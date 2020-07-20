@@ -64,7 +64,7 @@ tasks.withType(GroovyCompile) {
 
 task copyLibrary(type: Copy) {
     from '.'
-    into 'build/libs/ibtp-devops@master'
+    into 'build/libs/build-pipeline@master'
     include 'src/**'
     include 'vars/**'
 }
