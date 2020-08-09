@@ -1,9 +1,9 @@
 plugins {
     id 'org.asciidoctor.jvm.pdf' version '3.1.0'
     id 'org.asciidoctor.jvm.gems' version '3.1.0'
+    id 'java'
+    id 'groovy'
 }
-
-apply plugin: 'java'
 
 sourceCompatibility = 1.8
 group 'com.ibtp.devops.pipeline'
@@ -20,34 +20,7 @@ repositories {
 }
 
 dependencies {
-  asciidoctorGems 'rubygems:rouge:3.15.0'
-}
-
-final BUILD_DATE = new Date().format('dd.MM.yyyy').toString()
-final DOK_VERSION = version
-
-asciidoctorPdf {
-  dependsOn asciidoctorGemsPrepare
-
-  baseDirFollowsSourceFile()
-
-  asciidoctorj {
-    attributes 'build-gradle': file('build.gradle'),
-    'source-highlighter': 'rouge',
-    'revdate': BUILD_DATE,
-    'revnumber': DOK_VERSION,
-    'endpoint-url': 'http://www.ingenieurbuero-peetz.de',
-    'imagesdir': './images',
-    'chapter-label': '',
-    'icons': 'font',
-    'idprefix': 'id_',
-    'idseparator': '-',
-    'setanchors': '',
-    'docinfo1': ''
-  }
-}
-
-dependencies {
+    asciidoctorGems 'rubygems:rouge:3.15.0'
     compile 'org.slf4j:slf4j-api:1.7.22'
     compile 'org.codehaus.groovy:groovy-all:2.4.9'
     testCompile 'junit:junit:4.12'
@@ -56,6 +29,30 @@ dependencies {
     testCompile('org.spockframework:spock-core:1.1-groovy-2.4')
     //testCompile 'org.jenkins-ci.main:jenkins-core:2.73.3'
     testCompile 'org.jenkins-ci.main:jenkins-core:2.+'
+}
+
+final BUILD_DATE = new Date().format('dd.MM.yyyy').toString()
+final DOK_VERSION = version
+
+asciidoctorPdf {
+    dependsOn asciidoctorGemsPrepare
+
+    baseDirFollowsSourceFile()
+
+    asciidoctorj {
+        attributes  'build-gradle': file('build.gradle'),
+                    'source-highlighter': 'rouge',
+                    'revdate': BUILD_DATE,
+                    'revnumber': DOK_VERSION,
+                    'endpoint-url': 'http://www.ingenieurbuero-peetz.de',
+                    'imagesdir': './images',
+                    'chapter-label': '',
+                    'icons': 'font',
+                    'idprefix': 'id_',
+                    'idseparator': '-',
+                    'setanchors': '',
+                    'docinfo1': ''
+    }
 }
 
 tasks.withType(GroovyCompile) {
@@ -78,4 +75,3 @@ build.dependsOn(['asciidoctor'])
 wrapper {
     gradleVersion = "6.3"
 }
-
