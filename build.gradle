@@ -20,7 +20,15 @@ repositories {
 }
 
 dependencies {
-  asciidoctorGems 'rubygems:rouge:3.15.0'
+    asciidoctorGems 'rubygems:rouge:3.15.0'
+    compile 'org.slf4j:slf4j-api:1.7.22'
+    compile 'org.codehaus.groovy:groovy-all:2.4.9'
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-all:1.9.5'
+    testCompile 'com.lesfurets:jenkins-pipeline-unit:1.1'
+    testCompile('org.spockframework:spock-core:1.1-groovy-2.4')
+    //testCompile 'org.jenkins-ci.main:jenkins-core:2.73.3'
+    testCompile 'org.jenkins-ci.main:jenkins-core:2.+'
 }
 
 final BUILD_DATE = new Date().format('dd.MM.yyyy').toString()
@@ -45,17 +53,6 @@ asciidoctorPdf {
                     'setanchors': '',
                     'docinfo1': ''
     }
-}
-
-dependencies {
-    compile 'org.slf4j:slf4j-api:1.7.22'
-    compile 'org.codehaus.groovy:groovy-all:2.4.9'
-    testCompile 'junit:junit:4.12'
-    testCompile 'org.mockito:mockito-all:1.9.5'
-    testCompile 'com.lesfurets:jenkins-pipeline-unit:1.1'
-    testCompile('org.spockframework:spock-core:1.1-groovy-2.4')
-    //testCompile 'org.jenkins-ci.main:jenkins-core:2.73.3'
-    testCompile 'org.jenkins-ci.main:jenkins-core:2.+'
 }
 
 tasks.withType(GroovyCompile) {

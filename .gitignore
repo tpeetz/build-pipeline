@@ -1,6 +1,7 @@
 .gradle
 /build/
 /.settings/
+/.vscode/
 .project
 .classpath
 
