@@ -44,7 +44,6 @@ asciidoctorPdf {
                     'source-highlighter': 'rouge',
                     'revdate': BUILD_DATE,
                     'revnumber': DOK_VERSION,
-                    'endpoint-url': 'http://www.ingenieurbuero-peetz.de',
                     'imagesdir': './images',
                     'chapter-label': '',
                     'icons': 'font',
